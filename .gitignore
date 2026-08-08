@@ -17,3 +17,8 @@ npm-debug.log*
 # Vaqtinchalik generator natijalari
 tools/.tmp/
 tools/og-image.png
+
+# Portretning to'liq o'lchamli asl nusxasi (13 MB) — repoga kirmaydi.
+# OneDrive'da saqlanadi; site/assets/ dagi kichik variantlar commit qilinadi.
+# Rasmni qayta yasash kerak bo'lsa aslini shu nom bilan tools/ ga qo'yasiz.
+tools/portrait-v2-source.jpg

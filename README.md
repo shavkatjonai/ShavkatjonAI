@@ -1,100 +1,3 @@
-======= HEAD
-# Hi, I'm Shavkatjon 👋
-
-AI Engineer · Educator · Builder from Uzbekistan.
-
-I build Uzbek speech-recognition, computer-vision and backend systems,
-then explain what I learn in Uzbek.
-
-> AI’ni faqat ishlatma — uni tushun va yarat.
-
-Currently focused on:
-- Uzbek Speech-to-Text
-- Computer Vision
-- AI education
-- Django, FastAPI and Telegram systems
-
-Uzbek technical learning resources are still growing — I’m helping build that layer.
-
----
-
-## What I'm focused on
-
-**Speech recognition for Uzbek.** Open ASR models barely support Uzbek, so I
-fine-tune Whisper on Uzbek audio and ship the model with a browser demo. This is
-the work I care about most — there is very little competition here, which is
-exactly why it matters. It was also the subject of my Bachelor's thesis (see
-[stt_interface](https://github.com/shavkatjonai/stt_interface) below).
-
-**Computer vision.** Object detection and tracking with YOLOv11 and ByteTrack,
-tuned to hold real-time frame rates on real video streams — the foundation for
-a traffic-counting system currently in progress (see "More coming" below).
-
-**Backends and Telegram systems.** Django REST and FastAPI services, plus
-multi-role Aiogram bots, for order intake, CRM and promo-code distribution —
-from schema design to VPS deployment.
-
-**Foundations, not just tools.** Machine Learning, Deep Learning and Data
-Science as a discipline — I care about understanding the math and logic behind
-an algorithm, not only calling a library that implements it.
-
-**Teaching.** I teach AI and robotics to teenagers and to working
-professionals who are not developers. Same rule both ways: show the result
-first, explain the mechanism second.
-
----
-
-## Education
-
-- 🎓 **B.Sc. in Artificial Intelligence** — graduated with Honors (Uzbekistan's
-  "red diploma"). My thesis project was **stt_interface**, the Uzbek
-  speech-to-text system listed below.
-- 🎓 **M.Sc. — application submitted.** Awarded the **Beruniy Scholarship**
-  (a state scholarship named after the medieval scholar Al-Biruni). The
-  admission decision itself is still pending.
-
----
-
-## Selected projects
-
-| Project | What it does | Stack |
-|---|---|---|
-| [**stt_interface**](https://github.com/shavkatjonai/stt_interface) | Uzbek speech-to-text web app — Whisper fine-tuned on an Uzbek dataset, runs on CPU. My Bachelor's thesis (BMI) project | PyTorch · Transformers · Gradio · Librosa |
-| [**crm_bot**](https://github.com/shavkatjonai/crm_bot) | Multi-role management system for a production workshop: courier orders, accounting, stock reservations, automatic deadlines | Django · DRF · Aiogram 3 · PostgreSQL · APScheduler |
-| [**promo_code**](https://github.com/shavkatjonai/promo_code) | Promo-code distribution platform — web and Telegram bot sharing one API and database | Django REST · Aiogram 3 · PostgreSQL |
-| [**promo_code_front**](https://github.com/shavkatjonai/promo_code_front) | Frontend for the promo-code platform | Nuxt 4 · TypeScript · Tailwind |
-
-More coming: a traffic-counting pipeline, Arduino competition robots
-(line follower, sumo) and ESP32 BLE control.
-
----
-
-## Tools I work with
-
-**AI / ML** — Machine Learning · Deep Learning · Data Science · algorithms and their mathematical foundations · PyTorch · Transformers · Hugging Face · Whisper fine-tuning · YOLOv11 · ByteTrack · OpenCV · Gradio
-
-**Backend** — Python · Django · Django REST Framework · FastAPI · PostgreSQL · Aiogram 3
-
-**Frontend** — Nuxt · Vue · TypeScript · Tailwind · HTML/CSS/JS
-
-**Embedded** — Arduino · ESP32 · BLE · C++
-
-**Ops** — Ubuntu VPS · Nginx · Gunicorn · Certbot
-
----
-
-## Where to find me
-
-- 🌐 **[shavkatjonai.uz](https://shavkatjonai.uz)** — projects, services, writing
-- 💬 **[Telegram](https://t.me/shavkatjonai)** — where I post daily, in Uzbek
-- 📺 **[YouTube](https://www.youtube.com/@shavkatjonai)** — longer walkthroughs
-- 📸 **[Instagram](https://www.instagram.com/shavkatjonai)** — short clips
-- ✉️ **shavkatjonvahhobov@gmail.com** — project work and collaboration
-
----
-
-<sub>**O'rgan. Qur. Qo'lla.** — *Learn. Build. Apply.*</sub>
-=======
 # shavkatjonai.uz
 
 Shavkatjon Vahobovning shaxsiy brend landing page'i. **Sof statik sayt** — build qadami yo'q,
@@ -117,11 +20,12 @@ Loyiha konteksti, brend tokenlari va ishlash qoidalari — [CLAUDE.md](CLAUDE.md
 │   ├── icon-192.png  icon-512.png  icon-maskable-512.png
 │   └── assets/
 │       ├── fonts/             Poppins + Inter (self-host, woff2)
-│       ├── portrait-{560,900}.{avif,webp,jpg}
+│       ├── portrait-v2-{560,900}.{avif,webp,jpg}
 │       └── og-image.jpg       1200x630, ijtimoiy tarmoqlar uchun
 │
 ├── tools/                     ← saytga KIRMAYDI, faqat generatorlar
-│   ├── portrait-source.jpg    portretning asl nusxasi (900x1125)
+│   ├── portrait-v2-source.jpg portret asli, 4000x6000 (git'ga kirmaydi, 13 MB)
+│   ├── portrait-source.jpg    oldingi portret (endi ishlatilmaydi)
 │   ├── brand-mark.svg         chaqmoq belgisi — ikonkalar manbasi
 │   ├── og-image.html          og-image kompozitsiyasi
 │   ├── fetch-fonts.mjs        shriftlarni yuklab oladi
@@ -200,15 +104,21 @@ qilib belgilang — `www` varianti unga avtomatik yo'naltiriladi.
 **Matn, havola, raqamlar** — `site/index.html` ni oching va to'g'ridan-to'g'ri
 tahrirlang. Boshqa hech narsa qilish kerak emas.
 
-**Portret rasmini almashtirish:**
+**Portret rasmini almashtirish.** Skript istalgan nisbatdagi rasmni 4:5 ga
+kesib beradi. `--crop="cx,cy,scale"` — kesish markazi va kengligi, manba
+o'lchamiga nisbatan kasrlar bilan:
 
 ```bash
-cp yangi-rasm.jpg tools/portrait-source.jpg && node tools/build-images.mjs
+node tools/build-images.mjs --source=portrait-v3-source.jpg --version=v3 --crop="0.62,0.34,0.44"
 ```
 
-Rasm 4:5 nisbatda va kamida 900px kenglikda bo'lsin. `netlify.toml` da rasmlar
-bir yilga keshlanadi — rasm o'zgarsa fayl nomiga versiya qo'shing
-(`portrait-900-v2.avif`) va `index.html` dagi yo'llarni yangilang.
+`cx,cy` — yuz markazi qayerda (0.5 = o'rtada), `scale` — kesim kengligi manba
+kengligining qanchasi. Natijani `site/assets/` da ko'rib, sonlarni sozlab qayta
+yurgizasiz. So'ng `index.html` dagi 6 ta rasm yo'lini yangi versiyaga o'zgartirasiz.
+
+> `netlify.toml` da rasmlar bir yilga `immutable` keshlanadi. Shu sababli
+> **fayl nomini o'zgartirmasdan mazmunini almashtirmang** — eski tashrifchilar
+> yangi rasmni hech qachon ko'rmaydi. `--version` shuning uchun bor.
 
 **og-image matnini o'zgartirish:**
 
@@ -235,10 +145,18 @@ Eng birinchi navbatdagilari:
    `stt_interface` repolariga havola bor, lekin ularda README yo'q — tashrifchi
    ochganda bo'sh sahifa ko'radi. Bu ishonchni saytdagi hamma narsadan
    ko'proq buzadi.
-2. **Email manzilini qo'shish.** Hozir aloqa ro'yxatida "tez orada" holatida.
-   `index.html` dagi izohda qanday almashtirish yozilgan.
-3. **Lead-magnit PDF'ini yasash** — `t.me/shavkatjonai_bot` uni yubormaydi hozircha.
-4. **Traffic counter, robot va ESP32 loyihalarini GitHub'ga qo'yish** — saytda
+2. **Telegram botni yaratish.** `@shavkatjonai_bot` Telegram'da hali ro'yxatdan
+   o'tmagan — tekshirildi (mavjud bo'lmagan username sahifasi bilan bir xil javob
+   qaytaradi). Shu sababli magnit blokidagi tugma hozir **bosilmaydigan** holatda
+   ("PDF tez orada"). @BotFather orqali bot yaratib, lead-magnit PDF'ini ulagach
+   `index.html` dagi izohda ko'rsatilganidek `<span class="btn btn--soon">` ni
+   `<a class="btn btn--light" href="...">` ga almashtiring.
+3. **Traffic counter, robot va ESP32 loyihalarini GitHub'ga qo'yish** — saytda
    ular "Kod tez orada" deb turgan, repo paydo bo'lgach `<article>` ni `<a href>` ga
    almashtirasiz (`index.html` da qo'shni kartalar namuna).
->>>>>>> 13de67b (Saytni statik, build qadamisiz strukturaga o'tkazish)
+4. **Domen ulanmaguncha** `og:image` va JSON-LD absolyut
+   `https://shavkatjonai.uz/...` manzillarni ko'rsatadi. `*.netlify.app` da sinab
+   ko'rganda ijtimoiy tarmoq previewi rasmni topmaydi — bu normal, domen
+   ulangach o'zi tuzaladi.
+5. **`sitemap.xml` dagi `lastmod`** qo'lda yozilgan. Saytga sezilarli o'zgarish
+   kiritsangiz sanani yangilang.

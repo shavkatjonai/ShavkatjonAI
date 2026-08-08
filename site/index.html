@@ -26,7 +26,7 @@
 
 <meta name="theme-color" content="#006B62">
 
-<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -68,6 +68,7 @@
 
 /* ============ BREND TOKENLARI (Canva dizaynidan olingan) ============ */
 :root{
+  color-scheme:light;
   --green:#0A6B61;
   --green-2:#006B62;
   --green-dark:#005049;
@@ -90,6 +91,7 @@
   --r:20px;
 }
 [data-theme="dark"]{
+  color-scheme:dark;
   --green:#1E8F82;
   --green-2:#39B3A4;
   --green-dark:#146F65;
@@ -106,6 +108,26 @@
   --block-text:#E9EFF3;
   --shadow:0 24px 60px rgba(0,0,0,.4);
 }
+
+/* ---- Tungi rejim kontrasti ----
+   Tungi --green (#1E8F82) ustida hatto SOF OQ ham 3.96:1 beradi — WCAG AA
+   uchun 4.5:1 kerak. Token qiymatlari o'zgartirilmaydi (1-qoida); oq matn
+   ko'taradigan yuzalar mavjud --green-dark tokeniga o'tadi: 6.01:1.
+   Faqat MATNLI yuzalar — ikonka saqlaydigan .logo-mark va .pill i uchun
+   3:1 talab qo'llanadi va ular allaqachon o'tadi. */
+[data-theme="dark"] .badge,
+[data-theme="dark"] .btn--primary,
+[data-theme="dark"] .btn--outline:hover,
+[data-theme="dark"] .feature,
+[data-theme="dark"] .skip{background:var(--green-dark)}
+[data-theme="dark"] .btn--primary:hover{background:color-mix(in srgb,var(--green-dark) 80%,#000)}
+/* Yashil blok ichidagi och panellar (oq ustiga oq) fonni yorishtirib
+   kontrastni tushirardi: .f-metrics span 4.37, .feature .tag 4.48.
+   Tungi rejimda panellar to'qayadi — 6.2 va 7.2 ga chiqadi. */
+[data-theme="dark"] .feature .tag,
+[data-theme="dark"] .feature .stack span,
+[data-theme="dark"] .f-metrics div{background:rgba(0,0,0,.12)}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -113,7 +135,10 @@ body{
   font-family:var(--body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
   transition:background .25s ease,color .25s ease;
 }
-img{max-width:100%;display:block}
+/* height:auto MAJBURIY — <img> dagi height="1125" atributi presentational hint
+   sifatida ishlaydi va uni bermasa aspect-ratio bekor bo'lib qoladi.
+   Shunda portret qutisi 4:5 emas, 324x1125 (3.47:1) bo'lib ketadi. */
+img{max-width:100%;height:auto;display:block}
 picture{display:block}
 a{color:inherit}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
@@ -161,19 +186,23 @@ h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
 .btn--primary:hover{background:var(--green-dark)}
 .btn--outline{border-color:var(--green);color:var(--green-2)}
 .btn--outline:hover{background:var(--green);color:#fff}
-.btn--light{background:#fff;color:#0A6B61}
+.btn--light{background:#fff;color:var(--green-dark)}
 /* yashil blok ustida turadigan shaffof tugma */
 .btn--ghost{border-color:rgba(255,255,255,.45);color:#fff}
 .btn--ghost:hover{background:rgba(255,255,255,.14)}
+/* hali mavjud bo'lmagan manzil uchun bosilmaydigan tugma (to'q blok ustida) */
+.btn--soon{background:rgba(255,255,255,.1);color:rgba(255,255,255,.72);border-color:rgba(255,255,255,.22);cursor:default}
+.btn--soon:hover{transform:none}
 :focus-visible{outline:2.5px solid var(--green-2);outline-offset:3px;border-radius:6px}
 
 /* ---------- navigatsiya ---------- */
-header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:60;background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:12px}
 .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
 .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
 .logo b{font-family:var(--display);font-weight:700;font-size:16px;display:block;line-height:1.15}
 .logo span{font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+.logo-sub{display:block;white-space:nowrap}
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--text)}
@@ -230,14 +259,15 @@ header{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 9
 .f-metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:2}
 .f-metrics div{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.17);border-radius:16px;padding:20px}
 .f-metrics b{display:block;font-family:var(--display);font-weight:800;font-size:26px;line-height:1;margin-bottom:6px}
-.f-metrics span{font-size:13px;color:rgba(255,255,255,.75)}
+/* .75 alpha tungi rejimda 4.15:1 berardi — .9 ikkala rejimda ham AA dan o'tadi */
+.f-metrics span{font-size:13px;color:rgba(255,255,255,.9)}
 
 .stack{display:flex;flex-wrap:wrap;gap:7px}
 .stack span{font-size:12.5px;font-weight:500;color:var(--green-2);background:var(--mint-soft);border-radius:6px;padding:4px 10px}
 
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .proj{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px;text-decoration:none;display:block;position:relative;transition:border-color .18s,box-shadow .18s,transform .18s}
-a.proj:hover{border-color:var(--green);box-shadow:0 16px 36px rgba(10,107,97,.14);transform:translateY(-3px)}
+a.proj:hover{border-color:var(--green);box-shadow:0 16px 36px color-mix(in srgb,var(--green) 14%,transparent);transform:translateY(-3px)}
 .proj .tag{font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-2);display:block;margin-bottom:12px}
 .proj h3{font-weight:700;font-size:18px;margin-bottom:10px}
 .proj p{margin:0 0 16px;font-size:15px;color:var(--muted)}
@@ -246,13 +276,24 @@ a.proj:hover{border-color:var(--green);box-shadow:0 16px 36px rgba(10,107,97,.14
 .proj .go{display:flex;align-items:center;gap:7px;margin-top:16px;font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--green-2)}
 .proj .go svg{transition:transform .18s ease}
 a.proj:hover .go svg{transform:translateX(4px)}
-/* kodi hali ochilmagan loyihalar — bosilmaydi (CLAUDE.md 5-qoidasi) */
+/* kodi hali ochilmagan loyihalar — bosilmaydi (CLAUDE.md 5-qoidasi).
+   Yorliq kartaning pastida, bosiladigan kartalardagi "Kodni ko'rish"
+   qatori bilan bir xil joyda turadi — shunda ustma-ust tushmaydi. */
 .proj--soon{cursor:default}
 .soon-tag{
-  position:absolute;top:20px;right:20px;
-  font-family:var(--display);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green-2);background:var(--mint-soft);border-radius:100px;padding:5px 11px;
+  display:inline-flex;align-items:center;gap:7px;margin-top:16px;
+  font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--green-2);background:var(--mint-soft);border-radius:100px;padding:6px 13px;
 }
+/* "Barcha loyihalar" kartasi — shtrixli, markazlashtirilgan */
+.proj--all{
+  display:flex;flex-direction:column;justify-content:center;text-align:center;
+  background:var(--mint-soft);border-style:dashed;border-color:var(--mint);
+}
+.proj--all h3,.proj--all .tag{margin-bottom:8px}
+/* --muted mint-soft fonda 4.4956:1 berardi — 4.5 dan bir chimdim past.
+   Bu karta CTA bo'lgani uchun to'qroq token mos ham keladi. */
+.proj--all p{margin:0;color:var(--text)}
 
 /* ---------- XIZMATLAR ---------- */
 .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
@@ -279,11 +320,13 @@ a.proj:hover .go svg{transform:translateX(4px)}
 .posts{border-top:1px solid var(--line)}
 .post{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:22px 6px;border-bottom:1px solid var(--line);text-decoration:none;transition:padding-left .18s,background .18s;border-radius:10px}
 a.post:hover{padding-left:16px;background:var(--card)}
-.post time{font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--green-2);text-transform:uppercase;letter-spacing:.08em}
+/* .when — sana o'rni. <time> ishlatilmaydi: u mashina o'qiy oladigan
+   datetime talab qiladi, "Tez orada" esa sana emas. */
+.post .when{font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--green-2);text-transform:uppercase;letter-spacing:.08em}
 .post h3{font-weight:600;font-size:19px;line-height:1.3}
-.post span{font-family:var(--display);font-weight:600;font-size:13px;color:var(--green-2)}
+.post .go-read{font-family:var(--display);font-weight:600;font-size:13px;color:var(--green-2)}
 /* hali yozilmagan maqolalar — bosilmaydi */
-.post--soon time{color:var(--muted)}
+.post--soon .when{color:var(--muted)}
 .post--soon h3{color:var(--muted);font-weight:500}
 
 /* ---------- ALOQA ---------- */
@@ -312,6 +355,8 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
   .svc,.proj-grid{grid-template-columns:1fr}
   .proof-grid{grid-template-columns:repeat(2,1fr)}
   .hero-num{display:none}
+  /* bir ustunli tartibda nuqtali panjara portret ustiga tushib qoladi */
+  .hero-card .dots{display:none}
   .portrait{order:-1;max-width:290px;margin:0 auto}
   .portrait::before,.portrait::after{display:none}
   .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--bg);flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 20px;border-bottom:1px solid var(--line)}
@@ -319,13 +364,27 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
   .nav-links a{padding:12px 0;width:100%}
   .burger{display:block}
   .post{grid-template-columns:1fr;gap:6px}
-  .post span{display:none}
+  .post .go-read{display:none}
+}
+@media (max-width:480px){
+  /* tor ekranda logo tagsarlavhasi ikki-uch qatorga bo'linib, 70px'lik
+     headerdan chiqib ketadi — nom va belgi o'zi yetarli */
+  .logo-sub{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}.rise{opacity:1;transform:none}
 }
 </style>
+
+<noscript><style>
+/* JS o'chirilgan bo'lsa .rise ga "in" klassi qo'shilmaydi va hero'dan
+   keyingi butun mazmun (31 element) ko'rinmay qoladi. */
+.rise{opacity:1;transform:none}
+/* Mavzu almashtirgich va burger JS'siz ishlamaydi — ko'rsatilmaydi.
+   data-theme atributi ham qo'yilmaydi, ya'ni kunduzgi rejim qoladi. */
+.theme-btn,.burger{display:none}
+</style></noscript>
 </head>
 <body>
 
@@ -337,7 +396,7 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
       <span class="logo-mark" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg>
       </span>
-      <span><b>Shavkatjon AI</b><span>AI Engineer &bull; Educator &bull; Builder</span></span>
+      <span><b>Shavkatjon AI</b><span class="logo-sub">AI Engineer &bull; Educator &bull; Builder</span></span>
     </a>
     <div class="nav-right">
       <button class="theme-btn" id="theme" type="button" aria-label="Tungi rejimni almashtirish">
@@ -372,7 +431,7 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg>
             <i></i> Shavkatjon AI
           </span>
-          <h1>AI'ni faqat ishlatma.<em>Uni tushun va yarat.</em></h1>
+          <h1>AI'ni faqat ishlatma. <em>Uni tushun va yarat.</em></h1>
           <div class="rule" aria-hidden="true"></div>
           <p class="role">AI Engineer &bull; Educator &bull; Builder</p>
 
@@ -394,10 +453,10 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
 
         <div class="portrait">
           <picture>
-            <source type="image/avif" srcset="assets/portrait-560.avif 560w, assets/portrait-900.avif 900w" sizes="(max-width:900px) 264px, 393px">
-            <source type="image/webp" srcset="assets/portrait-560.webp 560w, assets/portrait-900.webp 900w" sizes="(max-width:900px) 264px, 393px">
-            <img src="assets/portrait-900.jpg"
-                 srcset="assets/portrait-560.jpg 560w, assets/portrait-900.jpg 900w"
+            <source type="image/avif" srcset="assets/portrait-v2-560.avif 560w, assets/portrait-v2-900.avif 900w" sizes="(max-width:900px) 264px, 393px">
+            <source type="image/webp" srcset="assets/portrait-v2-560.webp 560w, assets/portrait-v2-900.webp 900w" sizes="(max-width:900px) 264px, 393px">
+            <img src="assets/portrait-v2-900.jpg"
+                 srcset="assets/portrait-v2-560.jpg 560w, assets/portrait-v2-900.jpg 900w"
                  sizes="(max-width:900px) 264px, 393px"
                  width="900" height="1125" fetchpriority="high" decoding="async"
                  alt="Shavkatjon Vahobov, AI muhandisi">
@@ -461,12 +520,12 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
 
     <div class="proj-grid">
       <article class="proj proj--soon rise">
-        <span class="soon-tag">Kod tez orada</span>
         <span class="tag">Computer vision</span>
         <h3>Yo'l harakatini sanovchi tizim</h3>
         <p>Kameradagi transportni turiga qarab ajratadi, yo'nalishini kuzatadi va avtomatik hisoblab boradi.</p>
         <span class="res">Real vaqtda video oqimidan hisobot</span>
         <div class="stack"><span>YOLOv11</span><span>ByteTrack</span><span>OpenCV</span></div>
+        <span class="soon-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Kod tez orada</span>
       </article>
 
       <a class="proj rise" href="https://github.com/shavkatjonai/crm_bot">
@@ -488,27 +547,27 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
       </a>
 
       <article class="proj proj--soon rise">
-        <span class="soon-tag">Kod tez orada</span>
         <span class="tag">Robototexnika</span>
         <h3>Line-follower va sumo robot</h3>
         <p>Chiziq bo'ylab yuruvchi va musobaqa uchun sumo robot: sxema, kod va jonli video.</p>
         <span class="res">Musobaqada sinovdan o'tgan</span>
         <div class="stack"><span>Arduino</span><span>C++</span><span>Sensorlar</span></div>
+        <span class="soon-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Kod tez orada</span>
       </article>
 
       <article class="proj proj--soon rise">
-        <span class="soon-tag">Kod tez orada</span>
         <span class="tag">Embedded &middot; IoT</span>
         <h3>ESP32 simsiz boshqaruv</h3>
         <p>Telefon va qurilma o'rtasida BLE aloqa: masofadan boshqarish va ma'lumot uzatish.</p>
         <span class="res">Simsiz, ilovadan boshqariladi</span>
         <div class="stack"><span>ESP32</span><span>BLE</span><span>C++</span></div>
+        <span class="soon-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg> Kod tez orada</span>
       </article>
 
-      <a class="proj rise" href="https://github.com/shavkatjonai" style="display:flex;flex-direction:column;justify-content:center;text-align:center;background:var(--mint-soft);border-style:dashed">
-        <span class="tag" style="margin-bottom:8px">GitHub</span>
-        <h3 style="margin-bottom:8px">Barcha loyihalar</h3>
-        <p style="margin:0">Yangi loyihalar har oy qo'shiladi &mdash; kuzatib boring.</p>
+      <a class="proj proj--all rise" href="https://github.com/shavkatjonai">
+        <span class="tag">GitHub</span>
+        <h3>Barcha loyihalar</h3>
+        <p>Yangi loyihalar har oy qo'shiladi &mdash; kuzatib boring.</p>
       </a>
     </div>
   </div>
@@ -555,10 +614,14 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
         <p class="eyebrow">Bepul</p>
         <h2>AI ni noldan o'rganish <em>yo'l xaritasi</em></h2>
         <p>Qayerdan boshlash, qanday tartibda o'rganish va birinchi loyihani qanday qilish &mdash; bitta PDF, aniq qadamlar bilan. Botga yozing, darhol yuboriladi.</p>
-        <a class="btn btn--light" href="https://t.me/shavkatjonai_bot">
-          PDF ni olish
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v13M6 11l6 6 6-6M4 21h16"/></svg>
-        </a>
+        <!-- @shavkatjonai_bot hali Telegram'da ro'yxatdan o'tmagan, shuning uchun
+             bosilmaydigan holatda (CLAUDE.md 5-qoidasi). Bot yaratilgach shunga
+             almashtiring:
+             <a class="btn btn--light" href="https://t.me/shavkatjonai_bot">PDF ni olish ...</a> -->
+        <span class="btn btn--soon">
+          PDF tez orada
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>
+        </span>
       </div>
       <ul class="give">
         <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Ingliz tili kuchsiz bo'lsa ham boshlash yo'li</li>
@@ -578,10 +641,13 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
     <p class="lede rise">Google'da qidiriladigan savollarga o'zbek tilida to'liq javob. Oyiga 2 ta chuqur maqola.</p>
 
     <div class="posts rise">
-      <div class="post post--soon"><time>Tez orada</time><h3>Whisper modelini o'zbek tiliga fine-tune qilish</h3></div>
-      <div class="post post--soon"><time>Tez orada</time><h3>YOLOv11 ni noldan o'rnatib, birinchi modelni o'rgatish</h3></div>
-      <div class="post post--soon"><time>Tez orada</time><h3>Django loyihasini VPS'ga chiqarish: Nginx, Gunicorn, SSL</h3></div>
-      <div class="post post--soon"><time>Tez orada</time><h3>Telegram bot arxitekturasi: oddiy botdan CRM gacha</h3></div>
+      <!-- Maqola yozilgach: <div class="post post--soon"> -> <a class="post" href="...">,
+           <span class="when"> ichiga <time datetime="2026-09-01">Sentabr 2026</time>,
+           oxiriga <span class="go-read">O'qish</span> -->
+      <div class="post post--soon"><span class="when">Tez orada</span><h3>Whisper modelini o'zbek tiliga fine-tune qilish</h3></div>
+      <div class="post post--soon"><span class="when">Tez orada</span><h3>YOLOv11 ni noldan o'rnatib, birinchi modelni o'rgatish</h3></div>
+      <div class="post post--soon"><span class="when">Tez orada</span><h3>Django loyihasini VPS'ga chiqarish: Nginx, Gunicorn, SSL</h3></div>
+      <div class="post post--soon"><span class="when">Tez orada</span><h3>Telegram bot arxitekturasi: oddiy botdan CRM gacha</h3></div>
     </div>
   </div>
 </section>
@@ -602,10 +668,10 @@ footer{background:var(--card);border-top:1px solid var(--line);padding:34px 0}
         <li><a href="https://www.instagram.com/shavkatjonai">Instagram <em>qisqa videolar</em></a></li>
         <li><a href="https://www.youtube.com/@shavkatjonai">YouTube <em>batafsil darslar</em></a></li>
 
-        <!-- Akkaunt/manzil tayyor bo'lganda <span class="soon"> ni shunday almashtiring:
-             <li><a href="mailto:salom@shavkatjonai.uz">Email <em>buyurtma uchun</em></a></li>
+        <li><a href="mailto:shavkatjonvahhobov@gmail.com">Email <em>buyurtma uchun</em></a></li>
+
+        <!-- Akkaunt ochganingizdan keyin <span class="soon"> ni shunday almashtiring:
              <li><a href="https://huggingface.co/shavkatjonai">Hugging Face <em>ochiq modellar</em></a></li> -->
-        <li><span class="soon">Email <em>tez orada</em></span></li>
         <li><span class="soon">Hugging Face <em>tez orada</em></span></li>
         <li><span class="soon">LinkedIn <em>tez orada</em></span></li>
         <li><span class="soon">X (Twitter) <em>tez orada</em></span></li>
@@ -694,7 +760,8 @@ document.getElementById('yil').textContent = new Date().getFullYear();
   "alternateName":"Shavkatjon AI",
   "jobTitle":"AI Engineer",
   "url":"https://shavkatjonai.uz",
-  "image":"https://shavkatjonai.uz/assets/portrait-900.jpg",
+  "image":"https://shavkatjonai.uz/assets/portrait-v2-900.jpg",
+  "email":"mailto:shavkatjonvahhobov@gmail.com",
   "description":"AI va robototexnika yo'nalishida ishlaydigan muhandis va o'qituvchi. O'zbek tili uchun ochiq AI modellar va real loyihalar.",
   "address":{"@type":"PostalAddress","addressLocality":"Toshkent","addressCountry":"UZ"},
   "knowsLanguage":["uz","en"],

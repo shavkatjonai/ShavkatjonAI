@@ -34,6 +34,7 @@
 @font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(/assets/fonts/poppins-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root{
+  color-scheme:light;
   --green:#0A6B61; --green-2:#006B62; --green-dark:#005049;
   --mint:#9CC9C5; --mint-soft:#E7F1F0;
   --bg:#FAFBFC; --card:#FFFFFF;
@@ -43,6 +44,7 @@
   --body:"Inter",system-ui,sans-serif;
 }
 [data-theme="dark"]{
+  color-scheme:dark;
   --green:#1E8F82; --green-2:#39B3A4; --green-dark:#146F65;
   --mint:#5FB8AE; --mint-soft:rgba(57,179,164,.13);
   --bg:#0A1420; --card:#101E2E;
@@ -98,7 +100,7 @@ p{color:var(--muted);margin:0 0 30px;max-width:44ch;position:relative;z-index:2}
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg>
     </div>
     <p class="code">Xatolik 404</p>
-    <h1>Bu manzilda<em>hech nima yo'q.</em></h1>
+    <h1>Bu manzilda <em>hech nima yo'q.</em></h1>
     <div class="rule" aria-hidden="true"></div>
     <p>Havola eskirgan yoki manzil xato yozilgan bo'lishi mumkin. Bosh sahifada loyihalar, xizmatlar va aloqa ma'lumotlari bor.</p>
     <a class="btn" href="/">

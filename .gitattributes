@@ -1,0 +1,11 @@
+# Matnli fayllar repoda LF bilan saqlanadi, ish nusxasida OS o'ziga qarab oladi.
+* text=auto eol=lf
+
+# Ikkilik fayllar — hech qanday o'zgartirish qilinmasin
+*.woff2 binary
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.avif  binary
+*.webp  binary
+*.ico   binary
