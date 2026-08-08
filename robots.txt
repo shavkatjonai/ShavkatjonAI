@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shavkatjonai.uz/sitemap.xml

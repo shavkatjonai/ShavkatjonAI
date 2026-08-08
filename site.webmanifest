@@ -1,0 +1,18 @@
+{
+  "name": "Shavkatjon Vahobov — AI Engineer",
+  "short_name": "Shavkatjon AI",
+  "description": "AI'ni faqat ishlatma — uni tushun va yarat. O'zbek tilida AI va robototexnika.",
+  "lang": "uz",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAFBFC",
+  "theme_color": "#006B62",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

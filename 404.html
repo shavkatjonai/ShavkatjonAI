@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sahifa topilmadi — Shavkatjon AI</title>
+<meta name="description" content="Bu manzilda sahifa yo'q. Bosh sahifaga qaytish.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#006B62">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preload" href="/assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/poppins-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<script>
+(function(){
+  var t;
+  try{ t = localStorage.getItem('theme'); }catch(e){}
+  if(t !== 'light' && t !== 'dark'){
+    t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', t);
+  var m = document.querySelector('meta[name=theme-color]');
+  if(m) m.setAttribute('content', t === 'dark' ? '#0A1420' : '#006B62');
+})();
+</script>
+
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 600;font-display:swap;src:url(/assets/fonts/inter-var-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/poppins-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(/assets/fonts/poppins-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  color-scheme:light;
+  --green:#0A6B61; --green-2:#006B62; --green-dark:#005049;
+  --mint:#9CC9C5; --mint-soft:#E7F1F0;
+  --bg:#FAFBFC; --card:#FFFFFF;
+  --text:#121F36; --muted:#5D7078; --line:#E1E7EA;
+  --shadow:0 24px 60px rgba(18,31,54,.07);
+  --display:"Poppins",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --green:#1E8F82; --green-2:#39B3A4; --green-dark:#146F65;
+  --mint:#5FB8AE; --mint-soft:rgba(57,179,164,.13);
+  --bg:#0A1420; --card:#101E2E;
+  --text:#E9EFF3; --muted:#95A8B5; --line:rgba(255,255,255,.1);
+  --shadow:0 24px 60px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:var(--body);font-size:17px;line-height:1.65;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  -webkit-font-smoothing:antialiased;
+}
+.box{
+  background:var(--card);border:1px solid var(--line);border-radius:28px;
+  padding:clamp(32px,6vw,56px);max-width:560px;width:100%;
+  position:relative;overflow:hidden;box-shadow:var(--shadow);
+}
+.dots{
+  position:absolute;top:24px;right:24px;width:120px;height:70px;opacity:.55;pointer-events:none;
+  background-image:radial-gradient(var(--mint) 1.6px,transparent 1.6px);background-size:13px 13px;
+}
+.mark{
+  width:44px;height:44px;border-radius:12px;background:var(--green);color:#fff;
+  display:flex;align-items:center;justify-content:center;margin-bottom:26px;
+}
+.code{
+  font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--green-2);margin:0 0 14px;
+}
+h1{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(30px,5.5vw,44px);line-height:1.08;margin:0;
+}
+h1 em{font-style:normal;color:var(--green-2);display:block}
+.rule{width:64px;height:4px;background:var(--mint);border-radius:2px;margin:20px 0 22px}
+p{color:var(--muted);margin:0 0 30px;max-width:44ch;position:relative;z-index:2}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:600;font-size:15px;
+  padding:14px 26px;border-radius:100px;text-decoration:none;border:1.5px solid transparent;
+  background:var(--green);color:#fff;
+  transition:transform .15s ease,background .15s ease;
+}
+.btn:hover{transform:translateY(-2px);background:var(--green-dark)}
+:focus-visible{outline:2.5px solid var(--green-2);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+  <main class="box">
+    <div class="dots" aria-hidden="true"></div>
+    <div class="mark" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg>
+    </div>
+    <p class="code">Xatolik 404</p>
+    <h1>Bu manzilda <em>hech nima yo'q.</em></h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p>Havola eskirgan yoki manzil xato yozilgan bo'lishi mumkin. Bosh sahifada loyihalar, xizmatlar va aloqa ma'lumotlari bor.</p>
+    <a class="btn" href="/">
+      Bosh sahifaga qaytish
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </main>
+</body>
+</html>
