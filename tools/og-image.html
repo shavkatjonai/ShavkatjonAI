@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>OG image</title>
+<style>
+  @font-face{
+    font-family:'Poppins';
+    src:url('../site/assets/fonts/poppins-800-latin.woff2') format('woff2');
+    font-weight:800;
+    font-style:normal;
+    font-display:block;
+  }
+  @font-face{
+    font-family:'Poppins';
+    src:url('../site/assets/fonts/poppins-600-latin.woff2') format('woff2');
+    font-weight:600;
+    font-style:normal;
+    font-display:block;
+  }
+  @font-face{
+    font-family:'Inter';
+    src:url('../site/assets/fonts/inter-var-latin.woff2') format('woff2');
+    font-weight:400 600;
+    font-style:normal;
+    font-display:block;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    width:1200px;
+    height:630px;
+    overflow:hidden;
+    background:#121F36;
+    font-family:'Inter',sans-serif;
+  }
+
+  .frame{
+    position:relative;
+    width:1200px;
+    height:630px;
+    overflow:hidden;
+    background:#121F36;
+  }
+
+  /* o'ng yuqori nuqtali panjara */
+  .dots{
+    position:absolute;
+    top:0;
+    right:0;
+    width:240px;
+    height:150px;
+    opacity:.3;
+    background-image:radial-gradient(#9CC9C5 2.4px, transparent 2.4px);
+    background-size:22px 22px;
+    pointer-events:none;
+  }
+
+  /* o'ng pastdagi dekorativ doira */
+  .ring{
+    position:absolute;
+    right:-140px;
+    bottom:-160px;
+    width:420px;
+    height:420px;
+    border:1.5px solid rgba(255,255,255,.13);
+    border-radius:50%;
+    pointer-events:none;
+  }
+
+  .content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100%;
+    padding:0 72px;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    width:fit-content;
+    background:#0A6B61;
+    color:#fff;
+    border-radius:100px;
+    padding:10px 22px 10px 15px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:34px;
+  }
+  .badge svg{display:block;flex:none}
+  .badge i{width:1px;height:16px;background:rgba(255,255,255,.45);display:block;flex:none}
+
+  h1{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:70px;
+    line-height:1.05;
+    letter-spacing:-.02em;
+  }
+  h1 span.line1{display:block;color:#FFFFFF}
+  h1 span.line2{display:block;color:#9CC9C5}
+
+  .underline{
+    width:80px;
+    height:5px;
+    border-radius:2px;
+    background:#9CC9C5;
+    margin:28px 0 26px;
+  }
+
+  .subtitle{
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    font-size:21px;
+    color:rgba(255,255,255,.72);
+    margin:0 0 40px;
+    max-width:820px;
+  }
+
+  .url{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:19px;
+    color:#9CC9C5;
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="dots"></div>
+    <div class="ring"></div>
+
+    <div class="content">
+      <span class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5z"/></svg>
+        <i></i>
+        SHAVKATJON AI
+      </span>
+
+      <h1>
+        <span class="line1">AI'ni faqat ishlatma.</span>
+        <span class="line2">Uni tushun va yarat.</span>
+      </h1>
+
+      <div class="underline"></div>
+
+      <p class="subtitle">Shavkatjon Vahobov — AI Engineer • Educator • Builder</p>
+
+      <span class="url">shavkatjonai.uz</span>
+    </div>
+  </div>
+</body>
+</html>

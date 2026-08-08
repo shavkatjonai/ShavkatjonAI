@@ -1,0 +1,19 @@
+# Node — faqat tools/ ichida generator skriptlar uchun ishlatiladi.
+# Saytning o'zi hech qanday paketga bog'liq emas.
+node_modules/
+
+# Netlify CLI
+.netlify/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Loglar
+*.log
+npm-debug.log*
+
+# Vaqtinchalik generator natijalari
+tools/.tmp/
+tools/og-image.png

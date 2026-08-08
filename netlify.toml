@@ -1,0 +1,59 @@
+# Netlify konfiguratsiyasi — shavkatjonai.uz
+#
+# Sayt sof statik: build qadami YO'Q. Netlify `site/` papkasini
+# borligidek tarqatadi. Shu sababli `command` ko'rsatilmagan —
+# buzilishi mumkin bo'lgan build jarayoni umuman yo'q.
+
+[build]
+  publish = "site"
+
+# ---------- Xavfsizlik sarlavhalari (barcha sahifalar) ----------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    X-Frame-Options = "DENY"
+    # Sayt to'liq o'zimizda: tashqi CDN, shrift yoki skript yo'q.
+    # 'unsafe-inline' kerak, chunki CSS va JS HTML ichida joylashgan
+    # (bitta sahifa uchun eng tez variant). Sahifada foydalanuvchi
+    # kiritadigan maydon yo'q, ya'ni XSS yuzasi ham yo'q.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'"
+
+# ---------- HTML: keshlanmaydi, lekin tekshiriladi ----------
+# Tahrir qilib qayta joylaganda tashrifchi darhol yangi versiyani ko'radi.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ---------- Shriftlar va rasmlar: bir yil, o'zgarmas ----------
+# Fayl nomi o'zgarmasa mazmuni ham o'zgarmaydi. Rasm yangilansa
+# nomiga versiya qo'shing (masalan portrait-900-v2.avif).
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ---------- Ikonkalar ----------
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/apple-touch-icon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
