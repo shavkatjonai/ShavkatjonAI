@@ -32,6 +32,13 @@ Loyiha konteksti, brend tokenlari va ishlash qoidalari — [CLAUDE.md](CLAUDE.md
 │   ├── build-images.mjs       portret variantlarini yasaydi
 │   └── build-icons.mjs        ikonkalar + og-image yasaydi
 │
+├── github/                    ← GitHub profilingiz uchun tayyor materiallar
+│   ├── 00-BAJARILADIGAN-ISHLAR.md   topilgan muammolar (xavfsizlik birinchi)
+│   ├── profil-README.md             `shavkatjonai` repo uchun
+│   ├── promo_code_front-README.md   Nuxt shablonini almashtirish uchun
+│   └── shablon-README.md            qolgan repolar uchun
+│
+├── legacy/index-original.html  asl bitta faylli versiya (etalon)
 ├── netlify.toml               publish papkasi, kesh va xavfsizlik sarlavhalari
 └── CLAUDE.md                  loyiha konteksti
 ```
@@ -141,10 +148,9 @@ Undan oldin `tools/og-image.html` ichidagi `.line1` / `.line2` matnlarini tahrir
 Bajarilishi kerak bo'lganlar ro'yxati [CLAUDE.md](CLAUDE.md) ning 5-bo'limida.
 Eng birinchi navbatdagilari:
 
-1. **GitHub repolariga README yozish.** Saytdan `crm_bot`, `promo_code`,
-   `stt_interface` repolariga havola bor, lekin ularda README yo'q — tashrifchi
-   ochganda bo'sh sahifa ko'radi. Bu ishonchni saytdagi hamma narsadan
-   ko'proq buzadi.
+1. **GitHub profilini tartibga solish** — batafsil ro'yxat va tayyor matnlar
+   [`github/00-BAJARILADIGAN-ISHLAR.md`](github/00-BAJARILADIGAN-ISHLAR.md) da.
+   Eng shoshilinchi: `resume` repozitoriysida `.env` fayli ochiq turibdi.
 2. **Telegram botni yaratish.** `@shavkatjonai_bot` Telegram'da hali ro'yxatdan
    o'tmagan — tekshirildi (mavjud bo'lmagan username sahifasi bilan bir xil javob
    qaytaradi). Shu sababli magnit blokidagi tugma hozir **bosilmaydigan** holatda
