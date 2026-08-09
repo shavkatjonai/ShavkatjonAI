@@ -16,6 +16,8 @@ npm-debug.log*
 
 # Vaqtinchalik generator natijalari
 tools/.tmp/
+tools/.logo-preview/
+tools/.social-tmp/
 tools/og-image.png
 
 # Portretning to'liq o'lchamli asl nusxasi (13 MB) — repoga kirmaydi.
