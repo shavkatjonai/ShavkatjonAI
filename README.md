@@ -1,14 +1,19 @@
-# HI, I'm Shavkatjon 👋
+# Hi, I'm Shavkatjon 👋
 
-**AI Engineer · Educator · Builder** — based in Fergana, Uzbekistan.
+AI Engineer · Educator · Builder from Uzbekistan.
 
-> **AI'ni faqat ishlatma. Uni tushun va yarat.**
->
-> *(Don't just use AI. Understand it and build it.)*
+I build Uzbek speech-recognition, computer-vision and backend systems,
+then explain what I learn in Uzbek.
 
-I build computer-vision and speech systems, teach AI and robotics, and publish
-everything in Uzbek — because there is almost nothing to learn from in my
-language yet. That gap is the work.
+> AI’ni faqat ishlatma — uni tushun va yarat.
+
+Currently focused on:
+- Uzbek Speech-to-Text
+- Computer Vision
+- AI education
+- Django, FastAPI and Telegram systems
+
+Uzbek technical learning resources are still growing — I’m helping build that layer.
 
 ---
 
