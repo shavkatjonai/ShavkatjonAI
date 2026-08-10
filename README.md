@@ -1,4 +1,4 @@
-# Salom, I'm Shavkatjon 👋
+# HI, I'm Shavkatjon 👋
 
 **AI Engineer · Educator · Builder** — based in Fergana, Uzbekistan.
 
